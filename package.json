@@ -18,7 +18,9 @@
     "url": "https://github.com/Termigiova/Forkify/issues"
   },
   "homepage": "https://github.com/Termigiova/Forkify#readme",
-  "dependencies": {},
+  "dependencies": {
+    "axios": "^0.19.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
