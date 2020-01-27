@@ -98,7 +98,7 @@ const formatCount = count => {
         const [int, dec] = count.toString().split('.').map(el => parseInt(el, 10));
 
         if (!dec) { return count; }
-        
+
         if (int === 0) {
             const fractional = new Fraction(count);
             return `${fractional.numerator}/${fractional.denominator}`;
