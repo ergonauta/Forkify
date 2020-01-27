@@ -16,7 +16,7 @@ export const renderResults = (recipes, page = 1, resultsPerPage = 10) => {
 const renderRecipe = recipe => {
     const markup = `
         <li>
-            <a class="results__link results__link--active" href="#${recipe.recipe_id}">
+            <a class="results__link" href="#${recipe.recipe_id}">
                 <figure class="results__fig">
                     <img src="${recipe.image_url}" alt="${recipe.title}">
                 </figure>
@@ -73,7 +73,7 @@ const limitRecipeTitle = (title, limit = 17) => {
         }, 0);
     }
     return `${newTitle.join(' ')} ...`;
-}
+};
 
 export const clearInput = () => {
     elements.searchInput.value = '';
@@ -82,4 +82,16 @@ export const clearInput = () => {
 export const clearResults = () => {
     elements.searchResultList.innerHTML = '';
     elements.searchResultsPages.innerHTML = '';
+};
+
+export const highlightSelected = id => {
+    const resultsArr = Array.from(document.querySelectorAll('.results__link'));
+    resultsArr.forEach(result => {
+        result.classList.remove('results__link--active');
+    });
+
+    const tag = document.querySelector(`a[href="#${id}"]`);
+    if (tag) {
+        tag.classList.add('results__link--active');
+    }
 };
