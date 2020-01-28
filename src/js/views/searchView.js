@@ -62,7 +62,7 @@ const createButton = (page, type) => `
     </button>
 `;
 
-const limitRecipeTitle = (title, limit = 17) => {
+export const limitRecipeTitle = (title, limit = 17) => {
     const newTitle = [];
     if(title.length > limit) {
         title.split(' ').reduce((acc, cur) => {
@@ -90,7 +90,7 @@ export const highlightSelected = id => {
         result.classList.remove('results__link--active');
     });
 
-    const tag = document.querySelector(`a[href="#${id}"]`);
+    const tag = document.querySelector(`.results__link[href*="#${id}"]`);
     if (tag) {
         tag.classList.add('results__link--active');
     }
