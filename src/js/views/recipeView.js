@@ -1,7 +1,7 @@
 import { elements, renderLoader, clearLoader } from './base';
 import { Fraction } from 'fractional';
 
-export const renderRecipe = recipe => {
+export const renderRecipe = (recipe, isLiked) => {
     const markup = `
         <figure class="recipe__fig">
             <img src="${recipe.image}" alt="${recipe.title}" class="recipe__img">
@@ -41,7 +41,7 @@ export const renderRecipe = recipe => {
             </div>
             <button class="recipe__love">
                 <svg class="header__likes">
-                    <use href="img/icons.svg#icon-heart-outlined"></use>
+                    <use href="img/icons.svg#icon-heart${isLiked ? '' : '-outlined'}"></use>
                 </svg>
             </button>
         </div>
@@ -51,7 +51,7 @@ export const renderRecipe = recipe => {
                 ${recipe.ingredients.map(ingredient => createIngredient(ingredient)).join('')}
             </ul>
 
-            <button class="btn-small recipe__btn">
+            <button class="btn-small recipe__btn recipe__btn-add">
                 <svg class="search__icon">
                     <use href="img/icons.svg#icon-shopping-cart"></use>
                 </svg>
@@ -95,6 +95,7 @@ const formatCount = count => {
     if (count) {
         // count = 2.5 -> 2 1/2
         // count = 0.5 -> 1/2
+        const newCount = Math.round(count * 10000) / 10000; // Workaround to work with decimals like 0.3333333333
         const [int, dec] = count.toString().split('.').map(el => parseInt(el, 10));
 
         if (!dec) { return count; }
